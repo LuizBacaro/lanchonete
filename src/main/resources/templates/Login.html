@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="pt" xmlns="http://www.w3.org/1999/xhtml" 
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Lanchonete</title>
+  <!-- Tell the browser to be responsive to screen width -->
+  <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport" />
+  
+  <link rel="stylesheet" type="text/css" th:href="@{/vendors/bootstrap/bootstrap.min.css}" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css" />
+  <link rel="stylesheet" type="text/css" th:href="@{/stylesheets/lanchonete.css}" />
+
+  <link rel="shortcut icon" th:href="@{/images/defaul/favicon.ico}"/>
+  
+</head>
+<body class="hold-transition lockscreen">
+	<!-- Automatic element centering -->
+	<div class="lockscreen-wrapper">
+	  <div class="lockscreen-logo">
+			<img th:src="@{/images/default/logo_big.png}" class="img-responsive logo-login" alt="Logo" />
+	  </div>
+	  <div class="lockscreen-name  is-error text_center" th:if="${#bools.isTrue(param.error)}">
+			O e-mail e/ou senha não conferem
+	  </div>
+	
+	  <div class="lockscreen-item">
+	    <form class="lockscreen-credentials" th:action="@{/login}" method="POST">
+			<input type="text" class="form-control" placeholder="usuario" autofocus="autofocus" name="username" />
+	        <br/>
+			<input type="password" class="form-control" placeholder="senha" name="password" />
+			<span class="help-block"><strong>admin@admin.com.br /</strong> admin</span>
+			 <br/>
+			 <div class="row">
+			 	<div class="input-group input-group-sm text-center col-md-12" >
+				 	<span class="input-group input-group-btn">
+	   	            	 <button type="submit" class="btn btn-flat  js-ajax-block-btn"><i class="fa fa-arrow-right text-muted"></i> Entrar</button>
+	       	     	</span>
+	       	     </div>
+			 </div>   
+	    </form>	    
+	  </div>
+	  
+	  <div class="help-block text-center">
+	    Entre com suas credenciais
+	  </div>
+	  <div class="lockscreen-footer text-center">
+	    <strong>Copyright &copy; 2016 .</strong> All rights reserved.
+	  </div>
+	</div>
+	<script th:src="@{/vendors/jQuery/jquery-2.2.3.min.js}"></script>
+	<!-- Bootstrap 3.3.6 -->
+	<script th:src="@{/vendors/bootstrap/bootstrap.min.js}"></script>
+</body>
+</html>

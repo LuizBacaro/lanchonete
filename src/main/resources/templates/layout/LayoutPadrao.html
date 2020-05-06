@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="pt" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	xmlns:data="http://www.thymeleaf.org/extras/data">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<title>Lanchonete</title>
+<!-- Tell the browser to be responsive to screen width -->
+<meta
+	content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
+	name="viewport" />
+
+<!-- Bootstrap 3.3.7 -->
+<link rel="stylesheet" type="text/css" th:href="@{/vendors/bootstrap/bootstrap.min.css}" />
+<link rel="stylesheet" th:href="@{/vendors/font-awesome/font-awesome.min.css}" />
+<link rel="stylesheet" th:href="@{/vendors/ionicons/ionicons.min.css}" />
+<link rel="stylesheet" th:href="@{/stylesheets/sped-fonts.css}" />
+<link rel="stylesheet" type="text/css" th:href="@{/vendors/jQuery/UI/jquery-ui.min.css}" />
+<link rel="stylesheet" type="text/css" th:href="@{/vendors/pace/pace_big_counter.css}" />
+<link rel="stylesheet" type="text/css" th:href="@{/stylesheets/class-helpers.css?v1}" />
+<link rel="stylesheet" type="text/css" th:href="@{/stylesheets/default.css}" />
+<link rel="stylesheet" type="text/css" th:href="@{/stylesheets/lanchonete.css}" />
+<link rel="stylesheet" type="text/css" th:href="@{/stylesheets/skin-default.css}" />
+
+</head>
+
+<body class="hold-transition sidebar-mini skin-default">
+	<input type="hidden" name="_csrf" th:value="${_csrf.token}" />
+	<input type="hidden" name="_csrf_header" th:value="${_csrf.headerName}" />
+
+	<input type="hidden" class="js-base-url" data:url="@{/}" />
+
+	<div class="wrapper">
+
+		<div th:replace="layout/fragments/BarraNavegacao :: layout-navbar"></div>
+
+		<section layout:fragment="conteudo"></section>
+
+		<div th:replace="layout/fragments/Footer :: layout-footer"></div>
+
+	</div>
+
+	<script th:src="@{/vendors/jQuery/jquery-2.2.3.min.js}"></script>
+	<script th:src="@{/vendors/jQuery/UI/jquery-ui.min.js}"></script>
+	<script th:src="@{/vendors/bootstrap/bootstrap.min.js}"></script>
+	<script th:src="@{/vendors/slimScroll/jquery.slimscroll.min.js}"></script>
+	<script th:src="@{/vendors/pace/pace.js}"></script>
+	<script th:src="@{/vendors/fastclick/fastclick.js}"></script>
+	<script th:src="@{/vendors/moment/moment.min.js}"></script>
+	<script th:src="@{/vendors/moment/locale/pt-br.js}"></script>
+	<!-- InputMask -->
+	<script th:src="@{/vendors/inputmask/inputmask.js}"></script>
+	<script th:src="@{/vendors/inputmask/jquery.inputmask.js}"></script>
+	<!-- maskMoney -->
+	<script th:src="@{/vendors/jQuery/jquery.maskMoney.min.js}"></script>
+	<script th:src="@{/vendors/jQuery/jquery.mask.min.js}"></script>
+	<script th:src="@{/vendors/slide-to-top.js}"></script>
+	<!-- http://numeraljs.com/ -->
+	<script th:src="@{/vendors/numeralJs/numeral.min.js}"></script>
+	<script th:src="@{/vendors/numeralJs/locales/pt-br.min.js}"></script>
+
+	<script th:src="@{/javascripts/app.js}"></script>
+	<script th:src="@{/javascripts/utils.js?v3}"></script>
+	<th:block layout:fragment="javascript-extra"></th:block>
+</body>
+</html>

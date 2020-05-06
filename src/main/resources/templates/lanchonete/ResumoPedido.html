@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:data="http://www.thymeleaf.org/extras/data"
+      xmlns:lanchonete="http://lanchonete.com.br"
+      layout:decorate="~{layout/LayoutPadrao}">
+
+<head>
+    <title>Cadastro de aluno</title>
+</head>
+
+<body>
+
+<div class="content-wrapper" layout:fragment="conteudo">
+    <section class="content">
+    <form method="POST" th:object="${pedido}" class="js-formulario-principal"
+              th:action="@{/pagamento}">
+     <lanchonete:message/>
+     <input type="hidden" th:field="*{codigo}"/>
+     <input type="hidden" th:field="*{nome}"/>
+     <input type="hidden" th:field="*{endereco}"/>
+     
+    	<div class="col-md-6 col-xs-12">
+    		<h2 th:text="|Olá ${pedido.nome}|"></h2>
+        
+	         <h2 th:text="|O valor total do seu pedido é de  ${pedido.getValorTotal()}|"></h2>
+	         
+	         <div class="row">
+                
+                <div class="form-group required col-md-12">
+                    <label class="control-label ">Qual é a forma de pagamento ?</label>
+                    <div class="radio  ">
+                        <th:block th:each="fp : ${formaPagamento}">
+                            <label class="radio-inline">
+                                <input type="radio" class="js-radio-tipo-pagamento"
+                                       th:value="${fp}" th:field="*{formaPagamento}"
+                                       th:text="${fp.descricao}" />
+                            </label>
+                        </th:block>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="row">
+                
+                <div class="form-group required  col-md-12">
+                    <label class="control-label">Preciso de Troco ?</label>
+                    <div class="radio">
+                        <th:block th:each="sn : ${simNao}">
+                            <label class="radio-inline">
+                                <input type="radio" class="js-radio-tipo-salada"
+                                       th:value="${sn}" th:field="*{simNao}"
+                                       th:text="${sn.descricao}" />
+                            </label>
+                        </th:block>
+                    </div>
+                </div>
+            </div>
+            
+            <button type="submit" class="btn  btn-primary">Finalizar</button>
+    	</div>
+    	
+    	<div class="col-md-6 col-xs-12">
+    		<label class="control-label">Seu pedido já esta em andamento</label>
+    		<br>
+		   	<label class="control-label">Use nossa calculadora caso queira dividir o valor</label>
+		   	<hr/>
+		   	
+		   	<div class="row">
+		   		<div class="form-group col-md-12 required">
+	              <label for="valorPedido" class="control-label col-md-4">Valor do pedido</label>
+	              <input type="text" class="form-control col-md-8" id="valorPedido" />
+	          </div>
+		   	</div>
+		   	
+		   	<div class="row">
+		   		<div class="form-group col-md-12 required">
+	              <label for="quantidadePessoa" class="control-label col-md-4">Quantidade de Pessoas</label>
+	              <input type="text" class="form-control col-md-8" id="quantidadePessoa" />
+	          </div>
+		   	</div>
+
+			<div class="row">
+		   		<div class="form-group col-md-12 required">
+		              <label for="valorPessoa" class="control-label col-md-4">Valor por pessoa</label>
+		              <input type="text" class="form-control col-md-8" id="valorPessoa" />
+		          </div>
+		   	</div>
+             
+             <div class="row">
+             	<table class="table table-striped">
+	    			<thead>
+	    				<tr>
+	    					<th> <th>
+	    					<th>Valor<th>	
+	    					<th>%<th>
+	    				</tr>
+	    			</thead>
+	    			<tbody>
+	    				<!-- 
+	    				<tr th:each="pessoa, stat : ${}">
+	    					<td th:text="|Pessoa ${stat + 1}|"> </td>
+	    					<td th:text="|R$ ${{pessoa.valor}}|"> </td>
+	    					<td th:text="|${{pessoa.porcentagem}} %|"> </td>
+	    				</tr>
+	    				-->
+	    			</tbody>
+	    		</table>
+             </div>
+    		
+    	</div>
+    	
+   	</form>
+    </section>
+</div>
+</body>
+
+</html>

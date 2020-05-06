@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="pt" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	  layout:decorate="~{layout/LayoutPadrao}">
+	
+<head>
+	<title>Cadastro de usuário</title>
+	
+	<link rel="stylesheet" type="text/css" th:href="@{/vendors/bootstrap/bootstrap-switch.min.css}"/>
+</head>
+<body>
+	<div class="content-wrapper" layout:fragment="conteudo">
+		<!-- Content Header (Page header) -->
+		<section class="content-header">
+			<h1>
+				Acesso <small>cadastro</small>
+			</h1>
+			<ol class="breadcrumb">
+				<li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+				<li class="active">Page</li>
+			</ol>
+		</section>
+
+		<!-- Main content -->
+		<section class="content">
+		
+			<form th:object="${grupo}" method="POST" th:action="@{/acesso/salvar}">
+				
+				<div class="row">
+					<div class="form-group  col-sm-6">
+						<div class="box box-solid" >
+							<div class="box-header with-border">
+								<h4 class="box-title">Grupo</h4>
+	
+								<div class="box-tools pull-right">
+									<label data-toggle="tooltip" data-placement="right"
+										title="Cadastrar novo grupo">
+										<button type="button" class="btn btn-box-tool"  data-toggle="modal" data-target="#cadastroGrupoModal">
+											<i class="fa fa-plus"></i>
+										</button>
+									</label>
+								</div>
+							</div>
+							<div class="box box-solid">
+								<select id="grupo" class="form-control">
+										<option value="">Selecione o Grupo</option>
+										<option th:each="grupo : ${todosGrupos}" th:value="${grupo.codigo}" th:text="${grupo.nome}"></option>
+								</select>
+							</div>
+						</div>
+					</div>
+				</div>	
+				<div class="row">
+					<div class="form-group  col-sm-6">
+						<div class="box box-solid" >
+							<div class="box-header with-border">
+								<h4 class="box-title">Permissões</h4>
+	
+								<div class="box-tools pull-right">
+									<label data-toggle="tooltip" data-placement="right"
+										title="Cadastrar novo grupo">
+										<button type="button" class="btn btn-box-tool"  data-toggle="modal" data-target="#cadastroGrupoModal">
+											<i class="fa fa-plus"></i>
+										</button>
+									</label>
+								</div>
+							</div>
+							<div class="checkbox">
+								<ul class="checkbox-list">
+								 <li th:each="permissao : ${todasPermissoes}">
+								    <input type="checkbox" th:field="*{permissoes}" th:value="${permissao.codigo}" />
+								     <label th:for="${#ids.prev('permissoes')}" th:text="${permissao.nome}">Heating</label>
+								  </li>
+								 </ul>
+								
+								
+							</div>
+						</div>
+					</div>
+				</div>
+				
+				<button type="submit" class="btn  btn-primary">Salvar</button>
+			</form>
+
+			<div th:include="usuario/CadastroGrupoModal"></div>
+
+		</section>
+		<!-- /.content -->
+	</div>
+	<!-- /.content-wrapper -->
+
+<th:block layout:fragment="javascript-extra">
+	<script th:src="@{/vendors/bootstrap/bootstrap-switch.min.js}"></script>
+	<script th:src="@{/javascripts/grupo.cadastro-modal.js}"></script>
+	<script>
+		$('.js-status').bootstrapSwitch();
+	</script>
+</th:block>
+</body>
+
+</html>
